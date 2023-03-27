@@ -288,11 +288,20 @@ setTimeout(function(){
   document.querySelector(".notify-alert-box").style.top = '0'
 
 },1000)
-/*alert js*/
 
 });
 
+const cancelButton = document.getElementById('notify-cancel-button');
+const notifyButton = document.getElementById('notify-button');
+const alertBox = document.querySelector('.notify-alert-box');
 
+notifyButton.addEventListener('click', function() {
+  alertBox.style.display = 'none';
+});
+cancelButton.addEventListener('click', function() {
+    window.close();
+});
+/*alert js*/
 
 
 

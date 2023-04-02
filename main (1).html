@@ -144,7 +144,8 @@
   margin-right: -200px;
   top: -100%;
   padding: 20px;
-  margin-top: 40px;
+  margin-top: 100px;
+  margin-bottom: 100px;
   z-index: 10000;
   background: #FFF;
   color: #333;
@@ -170,10 +171,22 @@
   border: #333;
   border-color: #333;
 }
+ 
+ .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.7;
+  z-index: 500; /* lower z-index value than notify-alert-box */
+}
 /* alert style */
 
 </style>
 <!--alert-->
+<div class="overlay"></div>
 <div class="notify-alert-box">
   <h1>Souhlasíte s pravidly?</h1>
   <hr>
@@ -211,7 +224,6 @@
         <option value="14">Máš radši Windows 10 nebo Windows 11?</option>
         <option value="15">Jsi levák nebo pravák?</option>
         <option value="16">Hamburger nebo pizza?</option>
-
       </select>
       <button type="submit">Generovat</button>
     </form>
@@ -280,14 +292,15 @@ select.addEventListener("change", e => {
 /*alert js*/
 setTimeout(function(){
   document.querySelector(".notify-alert-box").style.top = '0'
-
-},1000)
+    $('.overlay').show(); // show the overlay
+},100)
 
 });
 
 const cancelButton = document.getElementById('notify-cancel-button');
 const notifyButton = document.getElementById('notify-button');
 const alertBox = document.querySelector('.notify-alert-box');
+const overlay = document.querySelector('.overlay')
 
 notifyButton.addEventListener('click', function() {
   alertBox.style.display = 'none';
@@ -295,7 +308,9 @@ notifyButton.addEventListener('click', function() {
   'Děkujeme',
   'Přejeme příjemné používání',
   'success'
-)
+).then(function() {
+      $('.overlay').hide(); // hide the overlay after the alert box is closed
+    });
 });
 cancelButton.addEventListener('click', function() {
     window.close();

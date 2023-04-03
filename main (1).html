@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="styles.css">
     <title>Question Generator</title>
   </head>
@@ -135,16 +136,17 @@
 
 /* alert style */
 .notify-alert-box {
-  text-align: center;
+  font-family: Arial, sans-serif;
+  text-align: block;
   width: 400px;
-  height: 500px;
+  height: 350px;
   position: fixed;
   left: 50%;
   margin-left: -200px;
   margin-right: -200px;
   top: -100%;
   padding: 20px;
-  margin-top: 100px;
+  margin-top: 150px;
   margin-bottom: 100px;
   z-index: 10000;
   background: #FFF;
@@ -153,10 +155,8 @@
   transition: all 0.3s ease-in-out;
 }
 
-.notify-alert-box img {
-  width: 70px;
-  float: left;
-  margin-right: 10px;
+.notify-alert-box h1 {
+  padding-left: 30px;
 }
 
 .notify-alert-box .buttons {
@@ -164,15 +164,12 @@
 }
 
 .notify-alert-box .buttons button {
-  margin-top: 320px;
+  margin-top: 40px;
   cursor: pointer;
   margin-left: 15px;
   margin-right: 15px;
 }
-.buttons {
-  border: #333;
-  border-color: #333;
-}
+
  
  .overlay {
   position: fixed;
@@ -184,6 +181,24 @@
   opacity: 0.7;
   z-index: 500; /* lower z-index value than notify-alert-box */
 }
+
+.rules-alert {
+  text-align: block;
+  margin-top: 40px;
+  background-color: #dddddd;
+  border-radius: 30px;
+}
+.rules-alert p {
+  padding-left: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.one {
+  border: none;
+  height: 5px;
+  border-radius: 10px;
+  background: #1161ed;
+}
 /* alert style */
 
 </style>
@@ -191,13 +206,13 @@
 <div class="overlay"></div>
 <div class="notify-alert-box">
   <h1>Souhlasíte s pravidly?</h1>
-  <hr>
-  <ul>
-    <li>neptat se na stejnou otázku</li>
-    <li>nemačkat vícekrát tlačítko "generovat"</li>
-    <li>nepřeskakovat otázky</li>
-    <li>nezneužívat chyb</li>
-  </ul>
+  <hr class="one">
+  <div class="rules-alert">
+    <p><i class="bi bi-1-circle-fill"></i> neptat se na stejnou otázku</p>
+    <p><i class="bi bi-2-circle-fill"></i> nemačkat vícekrát tlačítko "generovat"</p>
+    <p><i class="bi bi-3-circle-fill"></i> nepřeskakovat otázky</p>
+    <p><i class="bi bi-4-circle-fill"></i> nezneužívat chyb</p>
+  </div>
   <div class="buttons">
     <button id="notify-cancel-button">nesouhlasím</button>
     <button id="notify-button">souhlasím</button>
@@ -315,7 +330,16 @@ notifyButton.addEventListener('click', function() {
     });
 });
 cancelButton.addEventListener('click', function() {
+  alertBox.style.display = 'none';
+  Swal.fire(
+  'Smula',
+  'askdlasdasda',
+  'error'
+  ).then(function(){
     window.close();
+  });
+
+    
 });
 /*alert js*/
 

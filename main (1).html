@@ -282,7 +282,7 @@ const answers = {
 };
 
 
-
+/*Random výběr odpovědi*/
 form.addEventListener("submit", e => {
   e.preventDefault();
   const question = form.question.value;
@@ -290,9 +290,10 @@ form.addEventListener("submit", e => {
   answerDiv.textContent = answers[question][answerIndex];
   submitButton.setAttribute("disabled","true");
 
-  typeWriter(answerDiv, answerDiv.textContent, 50); /*type animation*/
+  typeWriter(answerDiv, answerDiv.textContent, 50); 
+  
 });
-
+/*Random výběr odpovědi*/
 
 /*type animation*/
 function typeWriter(answerDiv, text, delay) {
@@ -313,7 +314,7 @@ select.addEventListener("change", e => {
 /*alert js*/
 setTimeout(function(){
   document.querySelector(".notify-alert-box").style.top = '0'
-    $('.overlay').show(); // show the overlay
+    $('.overlay').show(); // Ukáže overlay
 },100)
 
 });
@@ -330,7 +331,7 @@ notifyButton.addEventListener('click', function() {
   'Přejeme příjemné používání',
   'success'
 ).then(function() {
-      $('.overlay').hide(); // hide the overlay after the alert box is closed
+      $('.overlay').hide(); // Schová overlay 
     });
 });
 cancelButton.addEventListener('click', function() {

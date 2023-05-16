@@ -49,13 +49,18 @@
     document.addEventListener('DOMContentLoaded', function() {
   var input = document.getElementById('user-input');
   var display = document.getElementById('chat-display');
+  var previousQuestions = []; // Keep track of previous questions
+  var previousResponses = []; // Keep track of previous responses
+  var repeatedWord = null; // Keep track of the repeated word
 
   input.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
-      var message = input.value;
-      displayMessage('You: ' + message);
-      input.value = '';
-      processMessage(message);
+      var message = input.value.trim(); // Remove leading/trailing spaces
+      if (message !== '') { // Ignore empty messages
+        displayMessage('You: ' + message);
+        input.value = '';
+        processMessage(message);
+      }
     }
   });
 
@@ -63,26 +68,99 @@
     display.innerHTML += '<p>' + message + '</p>';
     display.scrollTop = display.scrollHeight;
   }
+  function getRandomResponse(responses) {
+    var randomIndex = Math.floor(Math.random() * responses.length);
+    return responses[randomIndex];
+  }
 
   function processMessage(message) {
     // Convert user's message to lowercase for easier comparison
     var lowercaseMessage = message.toLowerCase();
 
+    // Check if the same word was repeated multiple times
+    var words = lowercaseMessage.split(' ');
+    if (words.length === 1 && words[0] === repeatedWord) {
+      var response = 'Anonym: Hey, that\'s not cool anymore.';
+      displayMessage(response);
+      repeatedWord = null;
+      return;
+    }
+    repeatedWord = words[0];
+
+    // Check if the same question was asked before
+    var index = previousQuestions.indexOf(lowercaseMessage);
+    if (index >= 0) {
+      var response = previousResponses[index];
+      displayMessage(response);
+      return;
+    }
+
     // Greetings
     if (lowercaseMessage.includes('hello') || lowercaseMessage.includes('hi')) {
-      var response = 'Chatbot: Hello there!';
+      var responses = [
+        'Anonym: Hello!',
+        'Anonym: Hii!',
+        'Anonym: ;)'
+    ];
+    var response = getRandomResponse(responses);
       displayMessage(response);
+      // Save question and response for future use
+      previousQuestions.push(lowercaseMessage);
+      previousResponses.push(response);
     }
 
     // Questions
-    else if (lowercaseMessage.includes('how are you')) {
-      var response = 'Chatbot: I am doing well, thank you!';
+    else if (lowercaseMessage.includes('how are you') || lowercaseMessage.includes('how are u'))  {
+        var responses = [
+        'Anonym: Alive, thx!',
+        'Anonym: Good, and u?',
+        'Anonym: I feel great!'
+    ];
+    var response = getRandomResponse(responses);
       displayMessage(response);
+      // Save question and response for future use
+      previousQuestions.push(lowercaseMessage);
+      previousResponses.push(response);
     }
 
+    else if (
+  lowercaseMessage.includes('where are you from') ||
+  lowercaseMessage.includes('where do you come from') ||
+  lowercaseMessage.includes('where are u from')
+) {
+  var responses = [
+    'Anonym: I am from Czech Republic.',
+    'Anonym: I come from London.',
+    'Anonym: That is none of your business.'
+  ];
+  var response = getRandomResponse(responses);
+  displayMessage(response);
+  // Save question and response for future use
+  previousQuestions.push(lowercaseMessage);
+  previousResponses.push(response);
+}
+else if (
+  lowercaseMessage.includes('what is your name')
+) {
+  var responses = [
+    'Anonym: Dana',
+    'Anonym: Alina',
+    'Anonym: Saša'
+  ];
+  var response = getRandomResponse(responses);
+  displayMessage(response);
+  // Save question and response for future use
+  previousQuestions.push(lowercaseMessage);
+  previousResponses.push(response);
+}
     // Default response
     else {
-      var response = 'Chatbot: Sorry, I did not understand your message.';
+      var responses = [
+        'Anonym: Sorry, I did not understand your message.',
+        'Anonym: I am not sure what you mean.',
+        'Anonym: Could you please rephrase that?'
+      ];
+      var response = getRandomResponse(responses);
       displayMessage(response);
     }
   }

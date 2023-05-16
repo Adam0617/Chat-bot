@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEB BEKS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+.chat-container {
+  width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+#chat-display {
+  height: 300px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+#user-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+}
+
+
+  </style>
+
+
+
+  <div class="chat-container">
+    <div id="chat-display"></div>
+    <input type="text" id="user-input" placeholder="Type your message..." autofocus>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var input = document.getElementById('user-input');
+  var display = document.getElementById('chat-display');
+
+  input.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      var message = input.value;
+      displayMessage('You: ' + message);
+      input.value = '';
+      processMessage(message);
+    }
+  });
+
+  function displayMessage(message) {
+    display.innerHTML += '<p>' + message + '</p>';
+    display.scrollTop = display.scrollHeight;
+  }
+
+  function processMessage(message) {
+    // Convert user's message to lowercase for easier comparison
+    var lowercaseMessage = message.toLowerCase();
+
+    // Greetings
+    if (lowercaseMessage.includes('hello') || lowercaseMessage.includes('hi')) {
+      var response = 'Chatbot: Hello there!';
+      displayMessage(response);
+    }
+
+    // Questions
+    else if (lowercaseMessage.includes('how are you')) {
+      var response = 'Chatbot: I am doing well, thank you!';
+      displayMessage(response);
+    }
+
+    // Default response
+    else {
+      var response = 'Chatbot: Sorry, I did not understand your message.';
+      displayMessage(response);
+    }
+  }
+});
+
+  </script>
+
+</body>
+</html>

@@ -1,13 +1,13 @@
 var questionAnswerLibrary = {
     greetings: {
       questions: ['ahoj', 'cus', 'cau','nazdar' ,'dobry den', ],
-      answers: ['Anonym: Hello!', 'Anonym: Hi there!', 'Anonym: Greetings!']
+      answers: ['Anonym: Ahoj!', 'Anonym: čus', 'Anonym: dobrý den','Anonym:čau','Anonym:nazdar',]
     },
     howAreYou: {
-      questions: ['how are you', 'how are u'],
+      questions: ['jak se mas ?', 'jak se vede ?','Jak je ?','jak to šlape','Jak to jde?','Jak se máte','Jak se daří','Co se děje','Jak to šlo','jak bylo','jak ses měl',],
       answers: [
-        'Anonym: I am doing great, thank you!',
-        'Anonym: Feeling good!',
+        'Anonym: Mám se dobře akorát mě nic nebaví co ty ? 😀',
+        'Anonym: Mám se výborně',
         'Anonym: Pretty well, how about you?'
       ]
     },

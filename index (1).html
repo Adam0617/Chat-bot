@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEB BEKS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .chat-container {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    #chat-display {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    #user-input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+
+  <div class="chat-container">
+    <div id="chat-display"></div>
+    <input type="text" id="user-input" placeholder="Type your message..." autofocus>
+  </div>
+
+  <script src="qa-library.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var input = document.getElementById('user-input');
+      var display = document.getElementById('chat-display');
+      var previousQuestions = []; // Keep track of previous questions
+      var previousResponses = []; // Keep track of previous responses
+      var repeatedWord = null; // Keep track of the repeated word
+
+      input.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+          var message = input.value.trim(); // Remove leading/trailing spaces
+          if (message !== '') { // Ignore empty messages
+            displayMessage('You: ' + message);
+            input.value = '';
+            processMessage(message);
+          }
+        }
+      });
+
+      function displayMessage(message) {
+        display.innerHTML += '<p>' + message + '</p>';
+        display.scrollTop = display.scrollHeight;
+      }
+
+      function getRandomResponse(responses) {
+        var randomIndex = Math.floor(Math.random() * responses.length);
+        return responses[randomIndex];
+      }
+
+      function processMessage(message) {
+        // Convert user's message to lowercase for easier comparison
+        var lowercaseMessage = message.toLowerCase();
+
+        // Check if the same question was asked before
+        var index = previousQuestions.indexOf(q => q === lowercaseMessage);
+        if (index >= 0) {
+          var response = previousResponses[index];
+          displayMessage(response);
+          return;
+        }
+        // Check if the same word was repeated multiple times
+        var words = lowercaseMessage.split(' ');
+        if (words.length === 1 && words[0] === repeatedWord) {
+          var response = 'Anonym: Hey, that\'s not cool anymore.';
+          displayMessage(response);
+          repeatedWord = null;
+          return;
+        }
+        repeatedWord = words[0];
+
+        // Check the question-answer library for matching questions
+        for (var category in questionAnswerLibrary) {
+          var questions = questionAnswerLibrary[category].questions;
+          var answers = questionAnswerLibrary[category].answers;
+          if (questions.some(question => lowercaseMessage.includes(question))) {
+            var response = getRandomResponse(answers);
+            displayMessage(response);
+            // Save question and response for future use
+            previousQuestions.push(lowercaseMessage);
+            previousResponses.push(response);
+            return;
+          }
+        }
+
+        // Default response
+        var responses = [
+          'Anonym: Sorry, I did not understand your message.',
+          'Anonym: I am not sure what you mean.',
+          'Anonym: Could you please rephrase that?'
+        ];
+        var response = getRandomResponse(responses);
+        displayMessage(response);
+      }
+    });
+  </script>
+</body>
+</html>

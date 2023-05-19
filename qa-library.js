@@ -6,7 +6,7 @@ var questionAnswerLibrary = {
     howAreYou: {
       questions: ['jak se mas ?', 'jak se vede ?','Jak je ?','jak to šlape','Jak to jde?','Jak se máte','Jak se daří','Co se děje','Jak to šlo','jak bylo','jak ses měl',],
       answers: [
-        'Anonym: Mám se dobře akorát mě nic nebaví co ty ? 😀',
+        'Anonym: Mám se dobře akorát mě nic nebaví co ty ?',
         'Anonym: Mám se výborně',
         'Anonym: Pretty well, how about you?'
       ]

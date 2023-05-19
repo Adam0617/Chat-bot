@@ -1,6 +1,6 @@
 var questionAnswerLibrary = {
     greetings: {
-      questions: ['ahoj', 'čus', 'čau' , 'cus', 'cau', 'dobrý den','nazdar' ,'dobry den', ],
+      questions: ['ahoj', 'čus', 'čau' ,'dobrý den','nazdar' ,'dobry den', ],
       answers: ['Anonym: Hello!', 'Anonym: Hi there!', 'Anonym: Greetings!']
     },
     howAreYou: {

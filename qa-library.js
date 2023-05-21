@@ -64,6 +64,51 @@ var questionAnswerLibrary = {
         'Anonym: I don\'t have preferences for food as I don\'t require sustenance.',
         'Anonym: Food is not a part of my existence.'
       ]
-    }
+    },
+    
+      weather: {
+    questions: ['What is the weather like today?', 'Will it rain today?', 'How hot is it outside?', 'What\'s the forecast for tomorrow?'],
+    answers: [
+      'Anonym: The weather is sunny and clear.',
+      'Anonym: There is a chance of rain later in the day.',
+      'Anonym: The temperature is around 25 degrees Celsius.'
+    ]
+  },
+    
+  sports: {
+    questions: ['Do you like sports?', 'What is your favorite sport?', 'Have you played any sports?'],
+    answers: [
+      'Anonym: I don\'t have physical capabilities to participate in sports.',
+      'Anonym: I don\'t have preferences for sports as I don\'t have physical sensations.',
+      'Anonym: I observe and gather information about various sports.'
+    ]
+  },
+    
+  movies: {
+    questions: ['What is your favorite movie?', 'Have you watched any good movies recently?', 'Do you enjoy watching films?'],
+    answers: [
+      'Anonym: I don\'t have personal preferences for movies.',
+      'Anonym: I don\'t watch movies as I don\'t have the ability to see.',
+      'Anonym: I can provide information and recommendations about movies.'
+    ]
+  },
+    
+  music: {
+    questions: ['What type of music do you like?', 'Do you have a favorite band or artist?', 'Can you sing or play an instrument?'],
+    answers: [
+      'Anonym: I don\'t have personal preferences for music.',
+      'Anonym: I don\'t have the ability to listen to or create music.',
+      'Anonym: I can provide information and recommendations about music genres and artists.'
+    ]
+  },
+    
+  technology: {
+    questions: ['What is the latest technology news?', 'Can you recommend any cool gadgets?', 'What do you think about artificial intelligence?'],
+    answers: [
+      'Anonym: Here are the latest technology news...',
+      'Anonym: I recommend checking out the latest smartphones and smart home devices.',
+      'Anonym: As an AI, I find artificial intelligence fascinating and full of potential.'
+    ]
+  }    
   };
   

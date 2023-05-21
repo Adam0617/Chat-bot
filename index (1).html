@@ -77,26 +77,17 @@
         // Check if the same question was asked before
         var index = previousQuestions.findIndex(q => q === normalizedMessage);
          if (index >= 0) {
-            var response = previousResponses[index];
+            var response = 'Anonym: Vymysli něco nového';
            displayMessage(response);
             return;
             }
-
-        // Check if the same word was repeated multiple times
-        var words = normalizedMessage.split(' ');
-        if (words.length === 1 && words[0] === repeatedWord) {
-          var response = 'Anonym: Hey, that\'s not cool anymore.';
-          displayMessage(response);
-          repeatedWord = null;
-          return;
-          }
-        repeatedWord = words[0];
 
         // Normalize questions in the question-answer library and compare
         for (var category in questionAnswerLibrary) {
           var questions = questionAnswerLibrary[category].questions;
          var answers = questionAnswerLibrary[category].answers;
           var matchingQuestion = questions.find(question => {
+            
           // Normalize question and include the variation
           var normalizedQuestion = question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
           return normalizedMessage.includes(normalizedQuestion) || normalizedQuestion.includes(normalizedMessage);

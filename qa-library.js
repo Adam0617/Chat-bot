@@ -109,6 +109,46 @@ var questionAnswerLibrary = {
       'Anonym: I recommend checking out the latest smartphones and smart home devices.',
       'Anonym: As an AI, I find artificial intelligence fascinating and full of potential.'
     ]
-  }    
+  },
+     travel: {
+    questions: ['Have you been on a trip recently?', 'What is your dream travel destination?', 'Do you like traveling?'],
+    answers: [
+      'Anonym: As an AI, I don\'t have the ability to physically travel.',
+      'Anonym: I don\'t have personal preferences for travel destinations.',
+      'Anonym: I can provide information and recommendations about travel destinations.'
+    ]
+  },
+  books: {
+    questions: ['Do you enjoy reading books?', 'What is your favorite book?', 'Can you recommend a good book?'],
+    answers: [
+      'Anonym: I don\'t have personal preferences for books, but I can provide information and recommendations.',
+      'Anonym: I don\'t read books as I don\'t have the ability to see.',
+      'Anonym: Here are some popular books you might enjoy...'
+    ]
+  },
+  languages: {
+    questions: ['How many languages do you speak?', 'What is your favorite language?', 'Can you translate phrases for me?'],
+    answers: [
+      'Anonym: I am programmed to understand and generate text in multiple languages.',
+      'Anonym: I don\'t have personal preferences for languages.',
+      'Anonym: I can help with translations. Please provide the phrase you want to translate.'
+    ]
+  },
+  fashion: {
+    questions: ['Do you follow fashion trends?', 'What is your favorite fashion brand?', 'Can you recommend a stylish outfit?'],
+    answers: [
+      'Anonym: I don\'t have personal preferences for fashion trends or brands.',
+      'Anonym: I don\'t have the ability to see or wear clothes.',
+      'Anonym: Here are some popular fashion brands and outfit ideas...'
+    ]
+  },
+  health: {
+    questions: ['Do you have any health tips?', 'What is the best way to stay healthy?', 'Can you recommend a fitness routine?'],
+    answers: [
+      'Anonym: I can provide general health tips, but please consult a medical professional for personalized advice.',
+      'Anonym: The key to staying healthy is a balanced diet and regular exercise.',
+      'Anonym: Here is a sample fitness routine you can try...'
+    ]
+  }
   };
   

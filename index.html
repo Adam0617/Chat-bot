@@ -10,163 +10,109 @@
 <body>
   <style>
     body {
-  font-family: Arial, sans-serif;
-}
+      font-family: Arial, sans-serif;
+    }
 
-.chat-container {
-  width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-}
+    .chat-container {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
 
-#chat-display {
-  height: 300px;
-  overflow-y: scroll;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
-  padding: 10px;
-}
+    #chat-display {
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
 
-#user-input {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-}
-
-
+    #user-input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
   </style>
-
-
 
   <div class="chat-container">
     <div id="chat-display"></div>
     <input type="text" id="user-input" placeholder="Type your message..." autofocus>
   </div>
 
-  <script src="script.js"></script>
+  <script src="qa-library.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-  var input = document.getElementById('user-input');
-  var display = document.getElementById('chat-display');
-  var previousQuestions = []; // Keep track of previous questions
-  var previousResponses = []; // Keep track of previous responses
-  var repeatedWord = null; // Keep track of the repeated word
+      var input = document.getElementById('user-input');
+      var display = document.getElementById('chat-display');
+      var previousQuestions = []; // Keep track of previous questions
+      var previousResponses = []; // Keep track of previous responses
+      var repeatedWord = null; // Keep track of the repeated word
 
-  input.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-      var message = input.value.trim(); // Remove leading/trailing spaces
-      if (message !== '') { // Ignore empty messages
-        displayMessage('You: ' + message);
-        input.value = '';
-        processMessage(message);
+      input.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter') {
+          var message = input.value.trim(); // Remove leading/trailing spaces
+          if (message !== '') { // Ignore empty messages
+            displayMessage('You: ' + message);
+            input.value = '';
+            processMessage(message);
+          }
+        }
+      });
+
+      function displayMessage(message) {
+        display.innerHTML += '<p>' + message + '</p>';
+        display.scrollTop = display.scrollHeight;
       }
-    }
-  });
 
-  function displayMessage(message) {
-    display.innerHTML += '<p>' + message + '</p>';
-    display.scrollTop = display.scrollHeight;
-  }
-  function getRandomResponse(responses) {
-    var randomIndex = Math.floor(Math.random() * responses.length);
-    return responses[randomIndex];
-  }
+      function getRandomResponse(responses) {
+        var randomIndex = Math.floor(Math.random() * responses.length);
+        return responses[randomIndex];
+      }
 
-  function processMessage(message) {
-    // Convert user's message to lowercase for easier comparison
-    var lowercaseMessage = message.toLowerCase();
+      function processMessage(message) {
+        // Normalize user's message to remove diacritics and convert to lowercase
+        var normalizedMessage = message.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    // Check if the same word was repeated multiple times
-    var words = lowercaseMessage.split(' ');
-    if (words.length === 1 && words[0] === repeatedWord) {
-      var response = 'Anonym: Hey, that\'s not cool anymore.';
-      displayMessage(response);
-      repeatedWord = null;
-      return;
-    }
-    repeatedWord = words[0];
+        // Check if the same question was asked before
+        var index = previousQuestions.findIndex(q => q === normalizedMessage);
+         if (index >= 0) {
+            var response = 'Anonym: Vymysli něco nového';
+           displayMessage(response);
+            return;
+            }
 
-    // Check if the same question was asked before
-    var index = previousQuestions.indexOf(lowercaseMessage);
-    if (index >= 0) {
-      var response = previousResponses[index];
-      displayMessage(response);
-      return;
-    }
+        // Normalize questions in the question-answer library and compare
+        for (var category in questionAnswerLibrary) {
+          var questions = questionAnswerLibrary[category].questions;
+         var answers = questionAnswerLibrary[category].answers;
+          var matchingQuestion = questions.find(question => {
+            
+          // Normalize question and include the variation
+          var normalizedQuestion = question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          return normalizedMessage.includes(normalizedQuestion) || normalizedQuestion.includes(normalizedMessage);
+          });
+          if (matchingQuestion) {
+             var response = getRandomResponse(answers);
+              displayMessage(response);
+              // Save question and response for future use
+              previousQuestions.push(normalizedMessage);
+              previousResponses.push(response);
+              return;
+              }
+          }
 
-    // Greetings
-    if (lowercaseMessage.includes('hello') || lowercaseMessage.includes('hi')) {
-      var responses = [
-        'Anonym: Hello!',
-        'Anonym: Hii!',
-        'Anonym: ;)'
-    ];
-    var response = getRandomResponse(responses);
-      displayMessage(response);
-      // Save question and response for future use
-      previousQuestions.push(lowercaseMessage);
-      previousResponses.push(response);
-    }
-
-    // Questions
-    else if (lowercaseMessage.includes('how are you') || lowercaseMessage.includes('how are u'))  {
+        // Default response
         var responses = [
-        'Anonym: Alive, thx!',
-        'Anonym: Good, and u?',
-        'Anonym: I feel great!'
-    ];
-    var response = getRandomResponse(responses);
-      displayMessage(response);
-      // Save question and response for future use
-      previousQuestions.push(lowercaseMessage);
-      previousResponses.push(response);
-    }
-
-    else if (
-  lowercaseMessage.includes('where are you from') ||
-  lowercaseMessage.includes('where do you come from') ||
-  lowercaseMessage.includes('where are u from')
-) {
-  var responses = [
-    'Anonym: I am from Czech Republic.',
-    'Anonym: I come from London.',
-    'Anonym: That is none of your business.'
-  ];
-  var response = getRandomResponse(responses);
-  displayMessage(response);
-  // Save question and response for future use
-  previousQuestions.push(lowercaseMessage);
-  previousResponses.push(response);
+          'Anonym: Sorry, I did not understand your message.',
+          'Anonym: I am not sure what you mean.',
+          'Anonym: Could you please rephrase that?'
+          ];
+       var response = getRandomResponse(responses);
+       displayMessage(response);
 }
-else if (
-  lowercaseMessage.includes('what is your name')
-) {
-  var responses = [
-    'Anonym: Dana',
-    'Anonym: Alina',
-    'Anonym: Saša'
-  ];
-  var response = getRandomResponse(responses);
-  displayMessage(response);
-  // Save question and response for future use
-  previousQuestions.push(lowercaseMessage);
-  previousResponses.push(response);
-}
-    // Default response
-    else {
-      var responses = [
-        'Anonym: Sorry, I did not understand your message.',
-        'Anonym: I am not sure what you mean.',
-        'Anonym: Could you please rephrase that?'
-      ];
-      var response = getRandomResponse(responses);
-      displayMessage(response);
-    }
-  }
-});
 
+    });
   </script>
-
 </body>
 </html>

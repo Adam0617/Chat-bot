@@ -77,7 +77,7 @@
         // Check if the same question was asked before
         var index = previousQuestions.findIndex(q => q === normalizedMessage);
          if (index >= 0) {
-            var response = 'Anonym: Vymysli něco nového';
+            var response = 'Anonym: Neptal jsi se náhodou už na to?';
            displayMessage(response);
             return;
             }

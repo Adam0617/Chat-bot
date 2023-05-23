@@ -22,7 +22,7 @@ var questionAnswerLibrary = {
     },
 
     name: {
-        questions: ['what is your name', 'whats your name', 'what do they call you'],
+        questions: ['Jak se jmenuješ', 'Jak ti mám říkat?', 'Jak ti říkají','Jak se nazýváš?','Jaké je tvé jméno?'],
         answers: [
           'Anonym: Saša',
           'Anonym: Anna',

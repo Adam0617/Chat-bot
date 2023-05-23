@@ -15,9 +15,9 @@ var questionAnswerLibrary = {
     origin: {
       questions: ['odkuď jsi ?', 'kde bydlíš ?', 'odkuď pocházíš ?','kde žiješ?'],
       answers: [
-        'Anonym: I am from Czech Republic.',
-        'Anonym: I come from London.',
-        'Anonym: That is none of your business.'
+        'Anonym: Jsem z Pardubic... Nic mpc já vím ale tak lepší než Brno každopádně co děláš?',
+        'Anonym: Jsem z Moravskoslezkého kraje nevěřím uplně cizím lidem takže ti neřeknu město' ,
+        'Anonym: Nějak moc se zajímáš nemyslíš ??? '
       ]
     },
 

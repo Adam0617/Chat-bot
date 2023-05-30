@@ -7,7 +7,7 @@ var questionAnswerLibrary = {
       questions: ['jak se mas', 'jak se vede','Jak je','jak to šlape','Jak to jde','Jak se máte','Jak se daří','Co se děje','Jak to šlo','jak bylo','jak ses měl',],
       answers: [
         'Anonym: Mám se dobře akorát mě nic nebaví co ty?',
-        'Anonym: Mám se výborně děkuji za optání',
+        'Anonym: Mám se výborně děkuji za optání a co ty ? ',
         'Anonym: Ale ujde to mohlo by být lépe ale co ty? jak se máš?'
       ]
     },

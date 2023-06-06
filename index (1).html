@@ -223,84 +223,75 @@
   <script src="qa-library.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      var input = document.getElementById('user-input');
-      var display = document.getElementById('chat-display');
-      var previousQuestions = []; // Keep track of previous questions
-      var previousResponses = []; // Keep track of previous responses
-      var repeatedWord = null; // Keep track of the repeated word
+  var input = document.getElementById('user-input');
+  var display = document.getElementById('chat-display');
+  var previousQuestions = []; // Keep track of previous questions
+  var previousResponses = []; // Keep track of previous responses
+  var repeatedWord = null; // Keep track of the repeated word
 
-      input.addEventListener('keyup', function(event) {
-        if (event.key === 'Enter') {
-          var message = input.value.trim(); // Remove leading/trailing spaces
-          if (message !== '') { // Ignore empty messages
-            displayMessage('You: ' + message);
-            input.value = '';
-            processMessage(message);
-          }
-        }
-        var button = document.getElementById('inputbutton');
-         button.addEventListener('click', function() {
-          var message = input.value.trim(); // Remove leading/trailing spaces
-          if (message !== '') { // Ignore empty messages
-           displayMessage('You: ' + message);
-            input.value = '';
-            processMessage(message);
-              }
+  var button = document.getElementById('inputbutton');
+  button.addEventListener('click', function() {
+    var message = input.value.trim(); // Remove leading/trailing spaces
+    if (message !== '') { // Ignore empty messages
+      displayMessage('You: ' + message);
+      input.value = '';
+      processMessage(message);
+    }
+  });
+
+  function displayMessage(message) {
+    display.innerHTML += '<p>' + message + '</p>';
+    display.scrollTop = display.scrollHeight;
+  }
+
+  function getRandomResponse(responses) {
+    var randomIndex = Math.floor(Math.random() * responses.length);
+    return responses[randomIndex];
+  }
+
+  function processMessage(message) {
+    // Normalize user's message to remove diacritics and convert to lowercase
+    var normalizedMessage = message.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+    // Check if the same question was asked before
+    var index = previousQuestions.findIndex(q => q === normalizedMessage);
+    if (index >= 0) {
+      var response = 'Anonym: Neptal jsi se náhodou už na to?';
+      displayMessage(response);
+      return;
+    }
+
+    // Normalize questions in the question-answer library and compare
+    for (var category in questionAnswerLibrary) {
+      var questions = questionAnswerLibrary[category].questions;
+      var answers = questionAnswerLibrary[category].answers;
+      var matchingQuestion = questions.find(question => {
+        // Normalize question and include the variation
+        var normalizedQuestion = question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        return normalizedMessage.includes(normalizedQuestion) || normalizedQuestion.includes(normalizedMessage);
       });
-
-      function displayMessage(message) {
-        display.innerHTML += '<p>' + message + '</p>';
-        display.scrollTop = display.scrollHeight;
+      if (matchingQuestion) {
+        var response = getRandomResponse(answers);
+        displayMessage(response);
+        // Save question and response for future use
+        previousQuestions.push(normalizedMessage);
+        previousResponses.push(response);
+        return;
       }
+    }
 
-      function getRandomResponse(responses) {
-        var randomIndex = Math.floor(Math.random() * responses.length);
-        return responses[randomIndex];
-      }
+    // Default response
+    var responses = [
+      'Anonym: Česky prosím jakože umím ještě anglicky ale preferuji narodní jazyk.',
+      'Anonym: Nejsem si uplně jistý co tím myslíš.🧐',
+      'Anonym: Huh? nechápu 🤨'
+    ];
+    var response = getRandomResponse(responses);
+    displayMessage(response);
+  }
 
-      function processMessage(message) {
-        // Normalize user's message to remove diacritics and convert to lowercase
-        var normalizedMessage = message.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+});
 
-        // Check if the same question was asked before
-        var index = previousQuestions.findIndex(q => q === normalizedMessage);
-         if (index >= 0) {
-            var response = 'Anonym: Neptal jsi se náhodou už na to?';
-           displayMessage(response);
-            return;
-            }
-
-        // Normalize questions in the question-answer library and compare
-        for (var category in questionAnswerLibrary) {
-          var questions = questionAnswerLibrary[category].questions;
-         var answers = questionAnswerLibrary[category].answers;
-          var matchingQuestion = questions.find(question => {
-            
-          // Normalize question and include the variation
-          var normalizedQuestion = question.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-          return normalizedMessage.includes(normalizedQuestion) || normalizedQuestion.includes(normalizedMessage);
-          });
-          if (matchingQuestion) {
-             var response = getRandomResponse(answers);
-              displayMessage(response);
-              // Save question and response for future use
-              previousQuestions.push(normalizedMessage);
-              previousResponses.push(response);
-              return;
-              }
-          }
-
-        // Default response
-        var responses = [
-          'Anonym: Česky prosím jakože umím ještě anglicky ale preferuji narodní jazyk.',
-          'Anonym: Nejsem si uplně jistý co tím myslíš.🧐',
-          'Anonym: Huh? nechápu 🤨'
-          ];
-       var response = getRandomResponse(responses);
-       displayMessage(response);
-}
-
-    });
   </script>
 </body>
 </html>

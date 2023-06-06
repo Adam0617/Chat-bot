@@ -20,27 +20,46 @@
     .chat-container {
       margin-top: 150px;
       margin-left: 550px;
-      background-color: #fff;
+      background-color: #090817;
       position: fixed;
       z-index: 2;
       width: 500px;
       padding: 30px;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 33px;
+      opacity: 0.8;
     }
   
+    button{
+      position: fixed;
+      background-color: #3c4053;
+      height: 40px;
+      padding: 13px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      margin-left: 4px;
+    }
+
+
+
     #chat-display {
       height: 500px;
-      overflow-y: scroll;
-      border: 1px solid #ccc;
+      border: 1px solid #60607a;
+      border-radius: 15px;
       margin-bottom: 20px;
       padding: 10px;
+      opacity: 0.;
     }
   
     #user-input {
+      height: 40px;
       width: 90%;
       padding: 10px;
       font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
     }
   
     /* Animace */
@@ -193,7 +212,11 @@
     <div class="chat-container">
       <div id="chat-display"></div>
       <input type="text" id="user-input" placeholder="Type your message..." autofocus>
-      <button>jjjj</button>
+      <button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+        </svg>
+    </button>
     </div>
   </div>
   

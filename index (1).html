@@ -222,7 +222,7 @@
   
   <script src="qa-library.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
   var input = document.getElementById('user-input');
   var display = document.getElementById('chat-display');
   var previousQuestions = []; // Keep track of previous questions
@@ -230,14 +230,22 @@
   var repeatedWord = null; // Keep track of the repeated word
 
   var button = document.getElementById('inputbutton');
-  button.addEventListener('click', function() {
+  button.addEventListener('click', sendMessage);
+
+  input.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+      sendMessage();
+    }
+  });
+
+  function sendMessage() {
     var message = input.value.trim(); // Remove leading/trailing spaces
     if (message !== '') { // Ignore empty messages
       displayMessage('You: ' + message);
       input.value = '';
       processMessage(message);
     }
-  });
+  }
 
   function displayMessage(message) {
     display.innerHTML += '<p>' + message + '</p>';
@@ -289,8 +297,8 @@
     var response = getRandomResponse(responses);
     displayMessage(response);
   }
-
 });
+
 
   </script>
 </body>

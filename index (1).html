@@ -212,7 +212,7 @@
     <div class="chat-container">
       <div id="chat-display"></div>
       <input type="text" id="user-input" placeholder="Type your message..." autofocus>
-      <button>
+      <button id = 'inputbutton'>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
         </svg>
@@ -225,13 +225,12 @@
     document.addEventListener('DOMContentLoaded', function() {
       var input = document.getElementById('user-input');
       var display = document.getElementById('chat-display');
-      var inputbutton = document.getElementById('button');
       var previousQuestions = []; // Keep track of previous questions
       var previousResponses = []; // Keep track of previous responses
       var repeatedWord = null; // Keep track of the repeated word
 
       input.addEventListener('keyup', function(event) {
-        if (event.key === 'Enter' || event.key === inputbutton) {
+        if (event.key === 'Enter' || event.key === 'inputbutton') {
           var message = input.value.trim(); // Remove leading/trailing spaces
           if (message !== '') { // Ignore empty messages
             displayMessage('You: ' + message);

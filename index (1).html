@@ -225,12 +225,13 @@
     document.addEventListener('DOMContentLoaded', function() {
       var input = document.getElementById('user-input');
       var display = document.getElementById('chat-display');
+      var inputbutton = document.getElementById('button');
       var previousQuestions = []; // Keep track of previous questions
       var previousResponses = []; // Keep track of previous responses
       var repeatedWord = null; // Keep track of the repeated word
 
       input.addEventListener('keyup', function(event) {
-        if (event.key === 'Enter' || event.key === Button) {
+        if (event.key === 'Enter' || event.key === inputbutton) {
           var message = input.value.trim(); // Remove leading/trailing spaces
           if (message !== '') { // Ignore empty messages
             displayMessage('You: ' + message);

@@ -15,9 +15,9 @@ var questionAnswerLibrary = {
     origin: {
       questions: ['Where are you from ', 'Where do you come from ?',],
       answers: [
-        'Anonym: I am from Germany in Berlin but whats your name ?,
+        'Anonym: I am from Germany in Berlin but whats your name ?',
         'Anonym: You really want to know....? England from London' ,
-        'Anonym: You are annoying nah i am just joking i from Sweden , Stockholm 
+        'Anonym: You are annoying nah i am just joking i from Sweden , Stockholm' 
       ]
     },
 

@@ -1,23 +1,23 @@
 var questionAnswerLibrary = {
     greetings: {
-      questions: ['ahoj', 'cus', 'cau','nazdar' ,'dobry den', ],
-      answers: ['Anonym: Ahoj!', 'Anonym: čus', 'Anonym: dobrý den','Anonym:čau','Anonym:nazdar',]
+      questions: ['hi', 'hello', 'hellowa','whats up' ,],
+      answers: ['Anonym: Hey there!', 'Anonym: hi :D', 'Anonym: hello :)',]
     },
     howAreYou: {
-      questions: ['jak se mas', 'jak se vede','Jak je','jak to šlape','Jak to jde','Jak se máte','Jak se daří','Co se děje','Jak to šlo','jak bylo','jak ses měl',],
+      questions: ['How are you ', 'how are u doing','whats up','How is it going ?',],
       answers: [
-        'Anonym: Mám se dobře akorát mě nic nebaví co ty?',
-        'Anonym: Mám se výborně děkuji za optání a co ty ? ',
-        'Anonym: Ale ujde to mohlo by být lépe ale co ty? jak se máš?'
+        'Anonym: I am fine thank u for asking :D but what abou you how are u ?',
+        'Anonym: Actually pretty good thanks for asking anyway what are u doing right now ?',
+        'Anonym: Could be better but what about u ?'
       ]
     },
     
     origin: {
-      questions: ['odkuď jsi ?', 'kde bydlíš ?', 'odkuď pocházíš ?','kde žiješ?'],
+      questions: ['Where are you from ', 'Where do you come from ?',],
       answers: [
-        'Anonym: Jsem z Pardubic... Nic mpc já vím ale tak lepší než Brno každopádně co děláš?',
-        'Anonym: Jsem z Moravskoslezkého kraje nevěřím uplně cizím lidem takže ti neřeknu město' ,
-        'Anonym: Nějak moc se zajímáš nemyslíš ??? '
+        'Anonym: I am from Germany in Berlin but whats your name ?,
+        'Anonym: You really want to know....? England from London' ,
+        'Anonym: You are annoying nah i am just joking i from Sweden , Stockholm 
       ]
     },
 
@@ -31,16 +31,16 @@ var questionAnswerLibrary = {
     },
 
     age: {
-      questions: ['how old are you', 'whats your age', 'what is your age'],
+      questions: ['kolik ti je let ?', 'kolik ti je ', 'jak starý jsi ?'],
       answers: [
-        'Anonym: I am ageless.',
-        'Anonym: Age is just a number for me.',
-        'Anonym: I exist beyond the concept of age.'
+        'Anonym: Jsem starý ',
+        'Anonym: Věk je jen číslo pro mě :).',
+        'Anonym: 20 ,já vím ještě zlatý věk'
       ]
     },
 
     hobbies: {
-      questions: ['what are your hobbies', 'do you have any hobbies', 'what do you like to do'],
+      questions: ['jaké máš hobby ?', 'co tě baví?', 'Jaké máš koníčky ?'],
       answers: [
         'Anonym: I enjoy conversing with humans.',
         'Anonym: I spend my time learning and gathering knowledge.',

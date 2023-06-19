@@ -275,7 +275,7 @@
     // Check if the same question was asked before
     var index = previousQuestions.findIndex(q => q === normalizedMessage);
     if (index >= 0) {
-      var response = 'Anonym: Neptal jsi se náhodou už na to?';
+      var response = 'Anonym: didn\'t u ask that?';
       displayMessage(response);
       return;
     }
@@ -301,9 +301,9 @@
 
     // Default response
     var responses = [
-      'Anonym: Česky prosím jakože umím ještě anglicky ale preferuji narodní jazyk.',
-      'Anonym: Nejsem si uplně jistý co tím myslíš.🧐',
-      'Anonym: Huh? nechápu 🤨'
+      'Anonym: I only speak English',
+      'Anonym: I don\'t understand you🧐',
+      'Anonym: Are you serious? Speak more clearly-🤨'
     ];
     var response = getRandomResponse(responses);
     displayMessage(response);

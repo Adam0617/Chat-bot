@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat bot</title>
+  <title>WEB BEKS</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -40,16 +40,13 @@
       border-radius: 8px;
       margin-left: 4px;
     }
-
-
-
     #chat-display {
       height: 500px;
       border: 1px solid #60607a;
       border-radius: 15px;
       margin-bottom: 20px;
       padding: 10px;
-      opacity: 0.8;
+      opacity: 0.;
     }
   
     #user-input {
@@ -61,9 +58,9 @@
       border-radius: 8px;
       text-decoration: none;
     }
-  
+
     /* Animace */
-  
+
     section {
       position: absolute;
       top: 0;
@@ -74,7 +71,7 @@
       background-position-x: center;
       z-index: 1;
     }
-  
+
     span {
       position: absolute;
       top: 50%;
@@ -88,7 +85,7 @@
         0 0 20px rgba(255, 255, 255, 1);
       animation: animate 3s linear infinite;
     }
-  
+
     span::before {
       content: '';
       position: absolute;
@@ -98,7 +95,7 @@
       height: 1px;
       background: linear-gradient(90deg, #fff, transparent);
     }
-  
+
     @keyframes animate {
       0% {
         transform: rotate(315deg) translateX(0);
@@ -112,7 +109,7 @@
         opacity: 0;
       }
     }
-  
+
     span:nth-child(1) {
       top: 0;
       right: 0;
@@ -120,7 +117,7 @@
       animation-delay: 0;
       animation-duration: 1s;
     }
-  
+
     span:nth-child(2) {
       top: 0;
       right: 80px;
@@ -128,7 +125,7 @@
       animation-delay: -0.2s;
       animation-duration: 3s;
     }
-  
+
     span:nth-child(3) {
       top: 80px;
       right: 0;
@@ -136,7 +133,7 @@
       animation-delay: 0.4s;
       animation-duration: 2s;
     }
-  
+
     span:nth-child(4) {
       top: 0;
       right: 180px;
@@ -144,7 +141,7 @@
       animation-delay: 0.6s;
       animation-duration: 1.5s;
     }
-  
+
     span:nth-child(5) {
       top: 0;
       right: 400px;
@@ -152,7 +149,7 @@
       animation-delay: 0.8s;
       animation-duration: 2.5s;
     }
-  
+
     span:nth-child(6) {
       top: 0;
       right: 600px;
@@ -160,7 +157,7 @@
       animation-delay: 1s;
       animation-duration: 3s;
     }
-  
+
     span:nth-child(7) {
       top: 300px;
       right: 0;
@@ -168,7 +165,7 @@
       animation-delay: 1.2s;
       animation-duration: 1.75s;
     }
-  
+
     span:nth-child(8) {
       top: 0;
       right: 700px;
@@ -176,7 +173,7 @@
       animation-delay: 1.4s;
       animation-duration: 1.25s;
     }
-  
+
     span:nth-child(9) {
       top: 0;
       right: 1000px;
@@ -184,7 +181,7 @@
       animation-delay: 0.75s;
       animation-duration: 1.75s;
     }
-  
+
     span:nth-child(10) {
       top: 0;
       right: 450px;
@@ -193,7 +190,7 @@
       animation-duration: 2.25s;
     }
   </style>
-  
+
   <div class="content">
     <div class="animation">
       <section>
@@ -208,6 +205,7 @@
         <span></span>
         <span></span>
       </section>
+
     </div>
     <div class="chat-container">
       <div id="chat-display"></div>
@@ -239,16 +237,13 @@
           }
         }
       });
-
   var button = document.getElementById('inputbutton');
   button.addEventListener('click', sendMessage);
-
   input.addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
       sendMessage();
     }
   });
-
   function sendMessage() {
     var message = input.value.trim(); // Remove leading/trailing spaces
     if (message !== '') { // Ignore empty messages
@@ -257,21 +252,17 @@
       processMessage(message);
     }
   }
-
   function displayMessage(message) {
     display.innerHTML += '<p>' + message + '</p>';
     display.scrollTop = display.scrollHeight;
   }
-
   function getRandomResponse(responses) {
     var randomIndex = Math.floor(Math.random() * responses.length);
     return responses[randomIndex];
   }
-
   function processMessage(message) {
     // Normalize user's message to remove diacritics and convert to lowercase
     var normalizedMessage = message.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
     // Check if the same question was asked before
     var index = previousQuestions.findIndex(q => q === normalizedMessage);
     if (index >= 0) {
@@ -279,7 +270,6 @@
       displayMessage(response);
       return;
     }
-
     // Normalize questions in the question-answer library and compare
     for (var category in questionAnswerLibrary) {
       var questions = questionAnswerLibrary[category].questions;
@@ -298,7 +288,6 @@
         return;
       }
     }
-
     // Default response
     var responses = [
       'Anonym: I only speak English',
@@ -312,4 +301,3 @@
   </script>
 </body>
 </html>
-
